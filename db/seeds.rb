@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+m = Player.create(name: 'Mihai')
+
+Aktion.create(timeslot: Time.now.at_beginning_of_hour, player: m, focus: 'Doing something else')
+Aktion.create(timeslot: Time.now.at_beginning_of_hour - 30.minutes, player: m, focus: 'Doing something')
