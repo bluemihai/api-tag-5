@@ -5,7 +5,7 @@ class PlayerSerializer < ActiveModel::Serializer
   delegate :current_player, to: :scope
 
   def token
-    return object.api_key if scope.admin?
+    return object.api_key if scope && scope.admin?
   end
 
 end
