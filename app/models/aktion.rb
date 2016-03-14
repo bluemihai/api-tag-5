@@ -3,6 +3,7 @@ class Aktion < ApplicationRecord
     super(attr_name, class_name)
     serialized_attr_accessor attr_name, exposed_fields
   end
+
   def self.serialized_attr_accessor(attr_name, *args)
     args.first.each do |method_name|
       eval "
@@ -16,6 +17,7 @@ class Aktion < ApplicationRecord
       "
     end
   end
+
   serialize :properties, Hash, %w(choice pushups situps wallsits breaths water snack tidy stop
     restroom stretch games friends other music change deflected distractions recovered
     declared_focus awesome_break tight_focus dancing soccer jumpjacks chairdips reading podcast)
@@ -30,8 +32,10 @@ class Aktion < ApplicationRecord
   has_many :insights
   has_many :interruptions
 
+  after_save :add_timeslot_if_missing
+
   validates :team_id, presence: true
-  validates :timeslot, presence: true, uniqueness: {scope: :player_id}
+  validates :timeslot, uniqueness: {scope: :player_id}
 
   scope :by_timeslot, -> { order('timeslot DESC') }
 
@@ -261,4 +265,11 @@ class Aktion < ApplicationRecord
     return nil if !interruptions
     interruptions.select{ |i| i.internal }.count rescue 0
   end
+
+  private
+  
+    def add_timeslot_if_missing
+      update(timeslot: Aktion.current_timeslot) unless timeslot
+    end
+    
 end

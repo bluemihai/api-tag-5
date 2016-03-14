@@ -6,6 +6,10 @@ class ApplicationController < ActionController::API
     @current_player ||= Player.find_by(api_key: params[:api_key])
   end
 
+  def tz
+    current_player.try(:current_time_zone) || 'Pacific Time (US & Canada)'
+  end
+
   private
 
     def authenticate_player!

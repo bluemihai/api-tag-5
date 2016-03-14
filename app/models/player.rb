@@ -113,6 +113,10 @@ class Player < ApplicationRecord
     aktions.select{ |a| a.persisted? && a.in_date_range(starting_on, ending_on) }
   end
 
+  def first_team
+    Team.find_by(id: preferences[:first_team_id])
+  end
+
   def initials
     return nil if !name
     name.split(' ').map{|w| w[0].upcase}.join

@@ -23,8 +23,6 @@ RSpec.describe PlayerSerializer, :type => :model do
         serializer = PlayerSerializer.new(@player, scope: admin)
         json = serializer.attributes.as_json
         expect(serializer.scope.admin?).to eq(true)
-        pp serializer.scope
-        pp @player
         expect(json['token']).to eq(@player.api_key)
       end
     end

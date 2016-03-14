@@ -33,19 +33,13 @@ RSpec.describe Player, :type => :model do
  #    expect(@player.actions_count_before_2am_4am_6am(slot.to_date)).to eq([1, 0, 0])
  #  end
 
-  it '#persist_sound_choice should change the sound' do
-    expect(@player.sound_choice).to be nil
-    @player.persist_sound_choice('foo')
-    expect(@player.sound_choice).to eq('foo')
-  end
-
-  it "#name should return a string" do
-    expect(@player.name).to match 'Test Player'
-  end
-
   it '#admin? should return true for admins' do
     @player.role = :admin
     expect(@player.admin?).to be true
+  end
+
+  it '#first_team should work' do
+    expect(@player.first_team).to eq(Team.first)
   end
 
   it '#init should build 1 team with membership, 5 roles and 2 projects' do
@@ -65,4 +59,13 @@ RSpec.describe Player, :type => :model do
     expect(@player.roles.count).to eq(5)
   end
 
+  it "#name should return a string" do
+    expect(@player.name).to match 'Test Player'
+  end
+
+  it '#persist_sound_choice should change the sound' do
+    expect(@player.sound_choice).to be nil
+    @player.persist_sound_choice('foo')
+    expect(@player.sound_choice).to eq('foo')
+  end
 end
