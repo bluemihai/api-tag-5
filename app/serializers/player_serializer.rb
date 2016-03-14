@@ -1,6 +1,5 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :role, :fictional, :token
-  has_many :aktions
+  attributes :id, :name, :email, :role, :fictional, :token, :created_at, :last_active, :total_actions
 
   delegate :current_player, to: :scope
 
@@ -8,4 +7,7 @@ class PlayerSerializer < ActiveModel::Serializer
     return object.api_key if scope && scope.admin?
   end
 
+  def total_actions
+    object.actions.count
+  end
 end

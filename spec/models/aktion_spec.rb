@@ -12,7 +12,6 @@ RSpec.describe Aktion, :type => :model do
   it 'should create 1 aktion and 1 player by default' do |variable|
     expect(Player.count).to eq(1)
     expect(Aktion.count).to eq(1)
-    pp Player.first
   end
 
 end
