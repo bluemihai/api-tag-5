@@ -4,8 +4,6 @@ class ApplicationController < ActionController::API
 
   def current_player
     @current_player ||= Player.find_by(api_key: params[:api_key])
-    pp "@current_player"
-    pp @current_player
   end
 
   private
@@ -29,5 +27,4 @@ class ApplicationController < ActionController::API
         render json: {status: 'You do not have access to this resource.'}
       end
     end
-
 end

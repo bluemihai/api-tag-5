@@ -8,7 +8,7 @@ RSpec.describe PlayerSerializer, :type => :model do
     @json = @serializer.attributes.as_json
   end
 
-  ['name', 'email', 'role', 'fictional'].each do |attr|
+  ['name', 'email'].each do |attr|
     describe attr do
       it 'is present in the json' do
         expect(@json[attr]).to eq @player.send(attr)
@@ -23,8 +23,10 @@ RSpec.describe PlayerSerializer, :type => :model do
         serializer = PlayerSerializer.new(@player, scope: admin)
         json = serializer.attributes.as_json
         expect(serializer.scope.admin?).to eq(true)
+        pp serializer.scope
+        pp @player
         expect(json['token']).to eq(@player.api_key)
-      end      
+      end
     end
     
     context 'as a non-admin' do
