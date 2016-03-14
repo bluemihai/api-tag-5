@@ -1,6 +1,6 @@
 class Role < ActiveRecord::Base
-  belongs_to :team
-  belongs_to :parent, class_name: 'Role'
+  belongs_to :team, required: false
+  belongs_to :parent, class_name: 'Role', required: false
   has_many :children, class_name: 'Role', foreign_key: 'parent_id'
   has_many :aktions
   has_many :role_assignments

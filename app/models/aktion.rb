@@ -22,10 +22,10 @@ class Aktion < ApplicationRecord
   enum status: [:committing, :attempting, :stopped, :reviewed]
 
   belongs_to :player
-  belongs_to :project
-  belongs_to :verb
-  belongs_to :role
-  belongs_to :location
+  belongs_to :project, required: false
+  belongs_to :verb, required: false
+  belongs_to :role, required: false
+  belongs_to :location, required: false
   belongs_to :team
   has_many :insights
   has_many :interruptions

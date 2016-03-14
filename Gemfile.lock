@@ -50,7 +50,7 @@ GEM
       tzinfo (~> 1.1)
     arel (7.0.0)
     builder (3.2.2)
-    byebug (8.2.2)
+    coderay (1.1.1)
     concurrent-ruby (1.0.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -79,6 +79,10 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     puma (3.1.0)
     rack (2.0.0.alpha)
       json
@@ -136,6 +140,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    slop (3.6.0)
     spring (1.6.4)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -160,10 +165,10 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers!
-  byebug
   factory_girl_rails
   listen (~> 3.0.5)
   pg (~> 0.18)
+  pry
   puma
   rack-cors
   rails (>= 5.0.0.beta3, < 5.1)

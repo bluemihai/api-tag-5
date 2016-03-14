@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Aktion, :type => :model do  
   before(:each) do
-    @aktion = FactoryGirl.create(:aktion)
+    @player = FactoryGirl.create(:player)
+    @aktion = FactoryGirl.create(:aktion, player: @player, team: @player.first_team)
   end
 
   subject { @aktion }

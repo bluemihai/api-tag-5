@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
   has_many :aktions
   has_many :team_memberships, dependent: :destroy
   has_many :players, through: :team_memberships
-  belongs_to :creator, foreign_key: 'creator_id', class_name: 'Player'
+  belongs_to :creator, class_name: 'Player', required: false
 
   default_scope { order(:updated_at) }
 
@@ -24,9 +24,8 @@ class Team < ActiveRecord::Base
   def self.initialize_for(playa)
     return playa.teams.first if playa.teams.first
     return 'Player not yet saved' if playa.new_record?
-    t = playa.teams.create!(name: playa.first_name.to_s + ' Enterprises')
-    playa.update_attributes(first_team_id: t.id)
-    t.update_attributes(creator_id: playa.id, default_color: '#CCFFCC', short: playa.initials)
+    t = playa.teams.create!(creator_id: playa.id, name: playa.first_name.to_s + ' Enterprises', default_color: '#CCFFCC', short: playa.initials)
+    playa.preferences[:first_team_id] = t.id
     t
   end
 

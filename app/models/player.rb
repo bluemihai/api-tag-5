@@ -35,7 +35,6 @@ class Player < ApplicationRecord
   has_many :projects, through: :project_memberships
   has_many :role_assignments
   has_many :roles, through: :role_assignments
-  belongs_to :first_team
   has_many :insights
   has_many :accepted_challenges
   has_many :challenges, through: :accepted_challenges

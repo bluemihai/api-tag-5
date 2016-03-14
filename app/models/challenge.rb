@@ -17,7 +17,7 @@ class Challenge < ActiveRecord::Base
 
   has_many :accepted_challenges
   has_many :players, through: :accepted_challenges
-  belongs_to :creator, class_name: 'Player'
+  belongs_to :creator, class_name: 'Player', required: false
   
   scope :all_daily, -> { where(daily: true) } 
 
