@@ -27,7 +27,7 @@ class Player < ApplicationRecord
 
   default_scope -> { order(:name) }
 
-  has_many :aktions  
+  has_many :aktions
   has_many :teams_created, foreign_key: :creator_id
   has_many :team_memberships
   has_many :teams, through: :team_memberships

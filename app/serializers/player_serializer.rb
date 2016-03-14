@@ -1,5 +1,6 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :role, :fictional, :token, :created_at, :last_active, :total_actions
+  attributes :id, :name, :email, :created_at, :last_active, :total_actions,
+  :gravatar
 
   delegate :current_player, to: :scope
 

@@ -1,11 +1,12 @@
 class AktionsController < ApplicationController
-  before_action :set_aktion, only: [:show, :update, :destroy]
+  # before_action :authenticate_player!, except: [:index]
+  # before_action :set_aktion, only: [:show, :update, :destroy]
 
   # GET /aktions
   def index
-    @aktions = Aktion.all
+    @aktions = current_player.actions.all
 
-    render json: @aktions
+    render json: @aktions, status: :created
   end
 
   # GET /aktions/1

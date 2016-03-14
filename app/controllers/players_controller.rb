@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
-  before_action :admin_only!
+  before_action :admin_only!, only: [:index]
   before_action :set_player, only: [:show, :update, :destroy]
+  before_action :admin_or_correct_player!, only: [:show, :update, :destroy]
 
   # GET /players
   def index
